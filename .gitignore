@@ -1,0 +1,47 @@
+# env
+.env
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# node
+node_modules/
+frontend/dist/
+npm-debug.log*
+
+# misc
+.DS_Store
+*.log
+backups/
+
+# 開発ツールのローカル設定
+.claude/settings.local.json
+
+# ---------------------------------------------------------------
+# 本リポジトリは「動かすためのソースコード」と「機能説明」のみを対象とする。
+# 以下は提出物・開発経緯の記録であり、成果物としては手元にのみ保持する。
+# ---------------------------------------------------------------
+CLAUDE.md
+reference/
+docs/00_要件定義書.pdf
+docs/04_マイルストーン計画.md
+docs/PROGRESS.md
+docs/backlog.md
+docs/発表手順書.md
+docs/発表スライド.pptx
+docs/PV台本.md
+docs/レポート5_要件定義.docx
+docs/最終レポート.docx
+docs/assets/pv/
+scripts/make_arch_diagram.py
+scripts/make_final_report.py
+scripts/make_pv_cards.py
+scripts/make_report.py
+scripts/make_slides.js

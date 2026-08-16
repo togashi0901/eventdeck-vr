@@ -1,0 +1,52 @@
+[project]
+name = "eventdeck-vr-backend"
+version = "0.1.0"
+description = "EventDeck VR backend (FastAPI)"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.29",
+    "psycopg[binary]>=3.1",
+    "alembic>=1.13",
+    "pydantic>=2.7",
+    "email-validator>=2.1",
+    "pydantic-settings>=2.3",
+    "redis>=5.0",
+    "argon2-cffi>=23.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "httpx>=0.27",
+    "ruff>=0.5",
+]
+
+[tool.setuptools]
+packages = ["app"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# 抽選リファレンス実装は無改変で組み込む (不変条件4) ため lint 対象から外す
+"app/services/lottery_v1.py" = ["ALL"]
+"tests/test_lottery_v1.py" = ["ALL"]
+
+[tool.pytest.ini_options]
+# app を import できるように "." を、無改変の lottery_v1 を import できるように
+# services ディレクトリを pythonpath に通す
+pythonpath = [".", "app/services"]
+asyncio_mode = "auto"
+# グローバル接続 (redis_client / engine) をテスト間で共有するため、
+# イベントループはセッションで1つに統一する
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["tests"]
